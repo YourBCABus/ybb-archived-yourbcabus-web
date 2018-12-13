@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+$primary: #00796B;
+$primary-dark: #004C40;
+$primary-gradient: linear-gradient(135deg, $primary, $primary-dark);
+
+$theme-colors: (
+  "primary-dark": $primary-dark
+);
+
+$link-hover-color: $primary-dark;
+
+@import '~bootstrap/scss/bootstrap';
