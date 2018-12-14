@@ -6,6 +6,12 @@ $theme-colors: (
   "primary-dark": $primary-dark
 );
 
+$body-bg: #FAFAFA; // TODO: Change to background
 $link-hover-color: $primary-dark;
 
 @import '~bootstrap/scss/bootstrap';
+
+.bg-primary-gradient {
+  @extend .bg-primary;
+  background-image: $primary-gradient;
+}

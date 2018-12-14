@@ -1,0 +1,8 @@
+<div class="w-100 h-100 bg-primary text-white font-weight-bold rounded-circle d-flex flex-column align-items-center justify-content-center p-0" *ngIf="location; else noLocation">
+  <div class="bus-location-text vertical-align-middle">{{location}}</div>
+</div>
+<ng-template #noLocation>
+  <div class="w-100 h-100 bg-light text-secondary font-weight-light rounded-circle d-flex flex-column align-items-center justify-content-center p-0">
+    <div class="bus-location-text vertical-align-middle">?</div>
+  </div>
+</ng-template>
