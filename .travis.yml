@@ -14,5 +14,6 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: dist/yourbcabus-web
   keep_history: true
+  fqdn: yourbcabus.com
   on:
     branch: master
