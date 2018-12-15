@@ -8,9 +8,11 @@ import { ApiService } from '../api.service';
 })
 export class HomeComponent implements OnInit {
 
+  public isIOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
   constructor(
     public api: ApiService
-  ) { }
+  ) {}
 
   ngOnInit() {
   }

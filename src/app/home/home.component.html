@@ -9,6 +9,14 @@
       <li class="nav-item"><a class="nav-link p-2" href="https://support.yourbcabus.com">Support</a></li>
     </ul>
   </nav>
+  <div class="container overflow-hidden app-banner d-flex align-items-center pb-3" *ngIf="isIOS">
+    <img src="/assets/iphone-xs.png" class="d-block app-image mr-3" />
+    <div class="flex-grow-1">
+      <h3>Get our iOS app.</h3>
+      <p>Notifications when your bus arrives. Navigation with custom stops. Get Off alerts so you never miss your stop. And more.</p>
+      <a href="https://itunes.apple.com/us/app/yourbcabus/id1443414640"><img src="/assets/download-on-the-app-store.svg" /></a>
+    </div>
+  </div>
 </div>
 <!--<div class="bg-primary-gradient px-sa">
   <div class="container py-3"></div>
@@ -16,7 +24,7 @@
 <div class="m-sa">
   <div class="container py-3">
     <div class="row bus-grid">
-      <ybb-bus *ngFor="let bus of api.buses | async" [bus]="bus" class="d-block mb-2 col-sm-6 col-md-6 col-lg-4 px-sm-2"></ybb-bus>
+      <ybb-bus *ngFor="let bus of api.buses | async" [bus]="bus" class="d-block my-1 col-sm-6 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
     </div>
   </div>
 </div>

@@ -41,10 +41,16 @@ $link-hover-color: $primary-dark;
 
 .bg-primary-gradient {
   @extend .bg-primary;
+  @extend .text-white;
   background-image: $primary-gradient;
 }
 
 .bg-primary-dark-gradient {
   @extend .bg-primary-dark;
+  @extend .text-white;
   background-image: $primary-dark-gradient;
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
 }
