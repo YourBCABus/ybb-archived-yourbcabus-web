@@ -1,17 +1,50 @@
 $primary: #00796B;
 $primary-dark: #004C40;
 $primary-gradient: linear-gradient(135deg, $primary, $primary-dark);
+$primary-dark-gradient: linear-gradient(135deg, darken($primary, 5%), darken($primary-dark, 5%));
+
+$background-color: #E8EDEC;
+$light: $background-color;
 
 $theme-colors: (
   "primary-dark": $primary-dark
 );
 
-$body-bg: #FAFAFA; // TODO: Change to background
+$body-bg: $light;
 $link-hover-color: $primary-dark;
 
 @import '~bootstrap/scss/bootstrap';
 
+// Safe Area Margin and Padding - taken from Bootstrap
+@each $prop, $abbrev in (margin: m, padding: p) {
+  .#{$abbrev}-sa {
+    #{$prop}-left: env(safe-area-inset-left) !important;
+    #{$prop}-right: env(safe-area-inset-right) !important;
+    #{$prop}-bottom: env(safe-area-inset-bottom) !important;
+  }
+
+  .#{$abbrev}r-sa,
+  .#{$abbrev}x-sa {
+    #{$prop}-right: env(safe-area-inset-right) !important;
+  }
+
+  .#{$abbrev}b-sa {
+    #{$prop}-bottom: env(safe-area-inset-bottom) !important;
+  }
+
+  .#{$abbrev}l-sa,
+  .#{$abbrev}x-sa {
+    #{$prop}-left: env(safe-area-inset-left) !important;
+  }
+}
+
+
 .bg-primary-gradient {
   @extend .bg-primary;
   background-image: $primary-gradient;
+}
+
+.bg-primary-dark-gradient {
+  @extend .bg-primary-dark;
+  background-image: $primary-dark-gradient;
 }

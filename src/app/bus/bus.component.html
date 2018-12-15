@@ -1,11 +1,11 @@
-<div class="bus-container card shadow border-0">
+<div class="bus-container card shadow border-0 w-100 h-100">
   <div class="card-body d-flex align-items-center">
-    <div class="flex-grow-1">
+    <div class="card-text mr-auto">
       <h5 class="card-title">{{bus.name}}</h5>
       <h6 class="card-subtitle text-muted">{{status}}</h6>
     </div>
     <div class="bus-location-container">
-      <ybb-bus-location class="w-100 h-100" [bus]="bus"></ybb-bus-location>
+      <ybb-bus-location class="d-block w-100 h-100" [bus]="bus"></ybb-bus-location>
     </div>
   </div>
 </div>

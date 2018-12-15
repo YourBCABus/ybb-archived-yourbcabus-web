@@ -1,3 +1,22 @@
-<div class="container pt-3">
-  <ybb-bus *ngFor="let bus of api.buses | async" [bus]="bus" class="d-block mb-2"></ybb-bus>
+<div class="bg-primary-dark-gradient px-sa">
+  <nav class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand" href="/">
+      <img src="/assets/logo.png" width="40" />
+      YourBCABus
+    </a>
+    <ul class="navbar-nav flex-row">
+      <li class="nav-item"><a class="nav-link p-2" href="https://about.yourbcabus.com">About</a></li>
+      <li class="nav-item"><a class="nav-link p-2" href="https://support.yourbcabus.com">Support</a></li>
+    </ul>
+  </nav>
+</div>
+<!--<div class="bg-primary-gradient px-sa">
+  <div class="container py-3"></div>
+</div>-->
+<div class="m-sa">
+  <div class="container py-3">
+    <div class="row bus-grid">
+      <ybb-bus *ngFor="let bus of api.buses | async" [bus]="bus" class="d-block mb-2 col-sm-6 col-md-6 col-lg-4 px-sm-2"></ybb-bus>
+    </div>
+  </div>
 </div>
