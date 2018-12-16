@@ -3,11 +3,18 @@ $primary-dark: #004C40;
 $primary-gradient: linear-gradient(135deg, $primary, $primary-dark);
 $primary-dark-gradient: linear-gradient(135deg, darken($primary, 5%), darken($primary-dark, 5%));
 
+$accent-light: #69E2FF;
+$accent: #00B0FF;
+$accent-dark: #0081CB;
+
 $background-color: #E8EDEC;
 $light: $background-color;
 
 $theme-colors: (
-  "primary-dark": $primary-dark
+  "primary-dark": $primary-dark,
+  "accent-light": $accent-light,
+  "accent": $accent,
+  "accent-dark": $accent-dark
 );
 
 $body-bg: $light;

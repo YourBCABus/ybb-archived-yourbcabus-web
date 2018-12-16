@@ -4,6 +4,9 @@
       <h5 class="card-title">{{bus.name}}</h5>
       <h6 class="card-subtitle text-muted">{{status}}</h6>
     </div>
+    <div class="mr-3">
+      <fa-icon class="star-button" [ngClass]="{'text-accent': starManager.isStarred(bus._id)}" [icon]="starIcon" (click)="toggleStar()"></fa-icon>
+    </div>
     <div class="bus-location-container">
       <ybb-bus-location class="d-block w-100 h-100" [bus]="bus"></ybb-bus-location>
     </div>
