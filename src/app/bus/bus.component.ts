@@ -11,7 +11,7 @@ import { StarredBusesService } from '../starred-buses.service';
 export class BusComponent implements OnInit {
 
   constructor(
-    private starManager: StarredBusesService
+    public starManager: StarredBusesService
   ) { }
 
   @Input() public bus: Bus;
