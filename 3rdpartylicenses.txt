@@ -357,6 +357,9 @@ to represent the company, product, or service to which they refer.**
 ngx-webstorage
 MIT
 
+@angular/forms
+MIT
+
 zone.js
 MIT
 The MIT License
