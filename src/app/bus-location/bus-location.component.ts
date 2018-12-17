@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Bus } from '../interfaces';
-import { isBusValidated } from '../utils';
 
 @Component({
   selector: 'ybb-bus-location',
@@ -14,10 +13,8 @@ export class BusLocationComponent implements OnInit {
   @Input() public bus: Bus;
 
   get location() {
-    if (isBusValidated(this.bus)) {
-      if (this.bus.locations && this.bus.locations.length > 0) {
-        return this.bus.locations[0];
-      }
+    if (this.bus.locations && this.bus.locations.length > 0) {
+      return this.bus.locations[0];
     }
   }
 

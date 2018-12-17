@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Bus } from '../interfaces';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { StarredBusesService } from '../starred-buses.service';
-import { isBusValidated } from '../utils';
 
 @Component({
   selector: 'ybb-bus',
@@ -20,10 +19,8 @@ export class BusComponent implements OnInit {
   public starIcon = faStar;
 
   get location() {
-    if (isBusValidated(this.bus)) {
-      if (this.bus.locations && this.bus.locations.length > 0) {
-        return this.bus.locations[0];
-      }
+    if (this.bus.locations && this.bus.locations.length > 0) {
+      return this.bus.locations[0];
     }
   }
 
