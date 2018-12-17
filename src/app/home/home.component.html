@@ -17,18 +17,24 @@
       <a href="https://itunes.apple.com/us/app/yourbcabus/id1443414640"><img src="/assets/download-on-the-app-store.svg" /></a>
     </div>
   </div>
+  <div class="container pt-2 pb-3">
+    <div class="input-group bus-search-field w-100">
+      <input class="form-control" type="search" name="search" [formControl]="searchField" placeholder="Search for a bus..." />
+      <fa-icon class="search-icon" [icon]="searchIcon"></fa-icon>
+    </div>
+  </div>
 </div>
-<div class="bg-primary-gradient px-sa" *ngIf="(starManager.starredBuses | async).length > 0">
+<div class="bg-primary-gradient px-sa" *ngIf="starredBuses.length > 0">
   <div class="container py-3">
     <div class="row bus-grid">
-      <ybb-bus *ngFor="let bus of starManager.starredBuses | async" [bus]="bus" class="d-block my-1 col-sm-6 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
+      <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [bus]="bus" class="d-block my-1 col-sm-6 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
     </div>
   </div>
 </div>
 <div class="m-sa">
   <div class="container py-3">
     <div class="row bus-grid">
-      <ybb-bus *ngFor="let bus of api.buses | async" [bus]="bus" class="d-block my-1 col-sm-6 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
+      <ybb-bus *ngFor="let bus of buses; trackBy: trackBus" [bus]="bus" class="d-block my-1 col-sm-6 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
     </div>
   </div>
 </div>
