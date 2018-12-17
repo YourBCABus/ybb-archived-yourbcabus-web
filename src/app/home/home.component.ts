@@ -21,9 +21,9 @@ export class HomeComponent implements OnInit {
   public debounceTime = 100;
 
   busFilter(searchTerm: string) {
-    let processed = searchTerm.trim().toLowerCase();
+    let processed = searchTerm.trim().toLowerCase().replace(/ /g, "");
     return (bus: Bus) => {
-      return (bus.name && bus.name.toLowerCase().includes(processed)) || (bus.locations && bus.locations.findIndex(location => location.toLowerCase() === processed) >= 0);
+      return (bus.name && bus.name.replace(/ /g, "").toLowerCase().includes(processed)) || (bus.locations && bus.locations.findIndex(location => location.toLowerCase() === processed) >= 0);
     };
   }
 
