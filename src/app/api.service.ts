@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, isDevMode } from '@angular/core';
 import { BehaviorSubject, Observable, interval } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Bus } from './interfaces';
@@ -31,6 +31,9 @@ export class ApiService {
 
   public refreshBuses() {
     this.http.get<Bus[]>(`${this.url}/buses`).subscribe((buses) => {
+      buses.forEach((bus) => {
+        bus.invalidate_time = bus.invalidate_time && new Date(bus.invalidate_time);
+      });
       buses.sort((a, b) => {
         if (a.available && !b.available) {
           return -1;
