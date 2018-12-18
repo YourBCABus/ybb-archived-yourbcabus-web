@@ -4,7 +4,24 @@ import { StarredBusesService } from '../starred-buses.service';
 import { FormControl } from '@angular/forms';
 import { Bus } from '../interfaces';
 import { debounceTime } from 'rxjs/operators';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faSearch, faList, faColumns, faMap } from '@fortawesome/free-solid-svg-icons';
+
+export enum HomeDisplayMode {
+  List,
+  Split,
+  Map
+}
+
+interface HomeDisplayModeItem {
+  displayMode: HomeDisplayMode;
+  icon?: IconDefinition;
+  name?: string;
+  fallback?: HomeDisplayMode;
+  threshold?: string;
+  surpressed?: boolean;
+}
 
 @Component({
   selector: 'ybb-home',
@@ -13,12 +30,20 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent implements OnInit {
 
+  public static displayModes: HomeDisplayModeItem[] = [
+    {displayMode: HomeDisplayMode.List, icon: faList, name: "List"},
+    {displayMode: HomeDisplayMode.Split, icon: faColumns, name: "Split", fallback: HomeDisplayMode.List, threshold: "(min-width: 768px)"},
+    {displayMode: HomeDisplayMode.Map, icon: faMap, name: "Map"}
+  ];
+
   public isIOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
   public searchIcon = faSearch;
   public searchField = new FormControl("");
   public buses: Bus[] = [];
   public starredBuses: Bus[] = [];
   public debounceTime = 100;
+  public displayModes = HomeComponent.displayModes;
+  public activeDisplayMode = HomeDisplayMode.Split;
 
   busFilter(searchTerm: string) {
     let processed = searchTerm.trim().toLowerCase().replace(/ /g, "");
@@ -41,7 +66,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public api: ApiService,
-    public starManager: StarredBusesService
+    public starManager: StarredBusesService,
+    public breakpointObserver: BreakpointObserver
   ) {}
 
   ngOnInit() {
@@ -56,10 +82,35 @@ export class HomeComponent implements OnInit {
     this.searchField.valueChanges.pipe(debounceTime(this.debounceTime)).subscribe(() => {
       this.refreshBuses();
     });
+
+    this.displayModes.forEach(item => {
+      if (item.threshold) {
+        this.breakpointObserver.observe(item.threshold).subscribe(result => {
+          item.surpressed = !result.matches;
+        });
+      }
+    });
   }
 
   trackBus(bus: Bus) {
     return bus._id;
+  }
+
+  setDisplayMode(mode: HomeDisplayMode, event: Event = null) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    this.activeDisplayMode = mode;
+  }
+
+  get effectiveDisplayMode() {
+    const item = this.displayModes.find(item => item.displayMode === this.activeDisplayMode);
+    if (item && item.surpressed) {
+      return (item.fallback || item.fallback === 0) ? item.fallback : this.activeDisplayMode;
+    }
+
+    return this.activeDisplayMode;
   }
 
 }

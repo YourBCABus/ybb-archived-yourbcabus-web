@@ -23,6 +23,13 @@
       <fa-icon class="search-icon" [icon]="searchIcon"></fa-icon>
     </div>
   </div>
+  <ul class="nav display-mode-nav justify-content-center w-100">
+    <li class="nav-item" *ngFor="let item of displayModes" [hidden]="item.surpressed">
+      <a class="nav-link" [ngClass]="{active: effectiveDisplayMode === item.displayMode}" href="#" (click)="setDisplayMode(item.displayMode, $event)">
+        <fa-icon *ngIf="item.icon" [icon]="item.icon"></fa-icon> {{item.name}}
+      </a>
+    </li>
+  </ul>
 </div>
 <div class="bg-primary-gradient px-sa" *ngIf="starredBuses.length > 0">
   <div class="container py-3">
