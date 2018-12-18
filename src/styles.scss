@@ -22,6 +22,10 @@ $link-hover-color: $primary-dark;
 
 @import '~bootstrap/scss/bootstrap';
 
+html, body {
+  height: 100%;
+}
+
 // Safe Area Margin and Padding - taken from Bootstrap
 @each $prop, $abbrev in (margin: m, padding: p) {
   .#{$abbrev}-sa {
@@ -45,7 +49,6 @@ $link-hover-color: $primary-dark;
   }
 }
 
-
 .bg-primary-gradient {
   @extend .bg-primary;
   @extend .text-white;
@@ -60,4 +63,8 @@ $link-hover-color: $primary-dark;
 
 .overflow-hidden {
   overflow: hidden !important;
+}
+
+.overflow-scroll {
+  overflow: scroll !important;
 }

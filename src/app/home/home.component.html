@@ -1,47 +1,65 @@
-<div class="bg-primary-dark-gradient px-sa">
-  <nav class="navbar navbar-expand-md navbar-dark">
-    <a class="navbar-brand" href="/">
-      <img src="/assets/logo.png" width="40" />
-      YourBCABus
-    </a>
-    <ul class="navbar-nav flex-row">
-      <li class="nav-item"><a class="nav-link p-2" href="https://about.yourbcabus.com">About</a></li>
-      <li class="nav-item"><a class="nav-link p-2" href="https://about.yourbcabus.com/support">Support</a></li>
-    </ul>
-  </nav>
-  <div class="container overflow-hidden app-banner d-flex align-items-center pb-3" *ngIf="isIOS">
-    <img src="/assets/iphone-xs.png" class="d-block app-image mr-3" />
-    <div class="flex-grow-1">
-      <h3>Get our iOS app.</h3>
-      <p>Notifications when your bus arrives. Navigation with custom stops. Get Off alerts so you never miss your stop. And more.</p>
-      <a href="https://itunes.apple.com/us/app/yourbcabus/id1443414640"><img src="/assets/download-on-the-app-store.svg" /></a>
-    </div>
-  </div>
-  <div class="container pt-2 pb-3">
-    <div class="input-group bus-search-field w-100">
-      <input class="form-control" type="search" name="search" [formControl]="searchField" placeholder="Search for a bus..." />
-      <fa-icon class="search-icon" [icon]="searchIcon"></fa-icon>
-    </div>
-  </div>
-  <ul class="nav display-mode-nav justify-content-center w-100">
-    <li class="nav-item" *ngFor="let item of displayModes" [hidden]="item.surpressed">
-      <a class="nav-link" [ngClass]="{active: effectiveDisplayMode === item.displayMode}" href="#" (click)="setDisplayMode(item.displayMode, $event)">
-        <fa-icon *ngIf="item.icon" [icon]="item.icon"></fa-icon> {{item.name}}
+<div [ngClass]="{'d-flex': effectiveDisplayMode !== 0}" class="flex-column h-100">
+  <div class="bg-primary-dark-gradient px-sa flex-shrink-0">
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <a class="navbar-brand" href="/">
+        <img src="/assets/logo.png" width="40" />
+        YourBCABus
       </a>
-    </li>
-  </ul>
-</div>
-<div class="bg-primary-gradient px-sa" *ngIf="starredBuses.length > 0">
-  <div class="container py-3">
-    <div class="row bus-grid">
-      <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [bus]="bus" class="d-block my-1 col-sm-6 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item"><a class="nav-link p-2" href="https://about.yourbcabus.com">About</a></li>
+        <li class="nav-item"><a class="nav-link p-2" href="https://about.yourbcabus.com/support">Support</a></li>
+      </ul>
+    </nav>
+    <div class="container overflow-hidden app-banner d-flex align-items-center pb-3" *ngIf="isIOS">
+      <img src="/assets/iphone-xs.png" class="d-block app-image mr-3" />
+      <div class="flex-grow-1">
+        <h3>Get our iOS app.</h3>
+        <p>Notifications when your bus arrives. Navigation with custom stops. Get Off alerts so you never miss your stop. And more.</p>
+        <a href="https://itunes.apple.com/us/app/yourbcabus/id1443414640"><img src="/assets/download-on-the-app-store.svg" /></a>
+      </div>
+    </div>
+    <div class="container pt-2 pb-3">
+      <div class="input-group bus-search-field w-100">
+        <input class="form-control" type="search" name="search" [formControl]="searchField" placeholder="Search for a bus..." />
+        <fa-icon class="search-icon" [icon]="searchIcon"></fa-icon>
+      </div>
+    </div>
+    <ul class="nav display-mode-nav justify-content-center w-100">
+      <li class="nav-item" *ngFor="let item of displayModes" [hidden]="item.surpressed">
+        <a class="nav-link" [ngClass]="{active: effectiveDisplayMode === item.displayMode}" href="#" (click)="setDisplayMode(item.displayMode, $event)">
+          <fa-icon *ngIf="item.icon" [icon]="item.icon"></fa-icon> {{item.name}}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <ng-container *ngIf="effectiveDisplayMode === 0">
+    <div class="bg-primary-gradient px-sa" *ngIf="starredBuses.length > 0">
+      <div class="container py-3">
+        <div class="row bus-grid">
+          <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [bus]="bus" class="d-block my-1 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
+        </div>
+      </div>
+    </div>
+    <div class="m-sa">
+      <div class="container py-3">
+        <div class="row bus-grid">
+          <ybb-bus *ngFor="let bus of buses; trackBy: trackBus" [bus]="bus" class="d-block my-1 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="container-fluid flex-grow-1 d-flex flex-row h-100 overflow-hidden p-0" *ngIf="effectiveDisplayMode === 1">
+    <div class="split-view-buses-list p-0 overflow-scroll">
+      <div class="pl-sa py-3 bg-primary-gradient" *ngIf="starredBuses.length > 0">
+        <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [bus]="bus" class="d-block w-100 my-1 px-3"></ybb-bus>
+      </div>
+      <div class="pl-sa py-3 border-right">
+        <ybb-bus *ngFor="let bus of buses; trackBy: trackBus" [bus]="bus" class="d-block w-100 my-1 px-3"></ybb-bus>
+      </div>
+    </div>
+    <div class="flex-grow-1 p-0 overflow-hidden h-100">
+      <ybb-map class="d-block w-100 h-100"></ybb-map>
     </div>
   </div>
-</div>
-<div class="m-sa">
-  <div class="container py-3">
-    <div class="row bus-grid">
-      <ybb-bus *ngFor="let bus of buses; trackBy: trackBus" [bus]="bus" class="d-block my-1 col-sm-6 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
-    </div>
-  </div>
+  <ybb-map class="d-block container-fluid flex-grow-1 p-0 h-100 overflow-hidden" *ngIf="effectiveDisplayMode === 2"></ybb-map>
 </div>
