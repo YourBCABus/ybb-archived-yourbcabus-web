@@ -43,7 +43,8 @@ export class HomeComponent implements OnInit {
   public starredBuses: Bus[] = [];
   public debounceTime = 100;
   public displayModes = HomeComponent.displayModes;
-  public activeDisplayMode = HomeDisplayMode.Split;
+  public activeDisplayMode = HomeDisplayMode.List;
+  public loadMap = false;
 
   busFilter(searchTerm: string) {
     let processed = searchTerm.trim().toLowerCase().replace(/ /g, "");
@@ -102,6 +103,10 @@ export class HomeComponent implements OnInit {
     }
 
     this.activeDisplayMode = mode;
+
+    if (this.activeDisplayMode === HomeDisplayMode.Split || this.activeDisplayMode === HomeDisplayMode.Map) {
+      this.loadMap = true;
+    }
   }
 
   get effectiveDisplayMode() {

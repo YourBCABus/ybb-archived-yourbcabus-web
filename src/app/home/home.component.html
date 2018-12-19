@@ -48,8 +48,8 @@
       </div>
     </div>
   </ng-container>
-  <div class="container-fluid flex-grow-1 d-flex flex-row h-100 overflow-hidden p-0" *ngIf="effectiveDisplayMode === 1">
-    <div class="split-view-buses-list p-0 overflow-scroll">
+  <div class="container-fluid flex-grow-1 d-flex flex-row h-100 overflow-hidden p-0" [hidden]="effectiveDisplayMode === 0">
+    <div class="split-view-buses-list p-0 overflow-scroll" *ngIf="effectiveDisplayMode === 1">
       <div class="pl-sa py-3 bg-primary-gradient" *ngIf="starredBuses.length > 0">
         <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [bus]="bus" class="d-block w-100 my-1 px-3"></ybb-bus>
       </div>
@@ -58,8 +58,7 @@
       </div>
     </div>
     <div class="flex-grow-1 p-0 overflow-hidden h-100">
-      <ybb-map class="d-block w-100 h-100"></ybb-map>
+      <ybb-map class="d-block w-100 h-100" *ngIf="loadMap"></ybb-map>
     </div>
   </div>
-  <ybb-map class="d-block container-fluid flex-grow-1 p-0 h-100 overflow-hidden" *ngIf="effectiveDisplayMode === 2"></ybb-map>
 </div>

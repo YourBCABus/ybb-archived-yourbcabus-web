@@ -1,1 +1,12 @@
-<agm-map class="w-100 h-100" [latitude]="41" [longitude]="-74" mapTypeId="hybrid"></agm-map>
+<agm-map
+  class="w-100 h-100"
+  [latitude]="(api.school | async)?.location?.latitude + latitudeDelta"
+  [longitude]="(api.school | async)?.location?.longitude + longitudeDelta"
+  [zoom]="19"
+  [fullscreenControl]="true"
+  [rotateControl]="true"
+  [streetViewControl]="false"
+  mapTypeId="hybrid"
+>
+  <agm-marker [latitude]="(api.school | async)?.location?.latitude" [longitude]="(api.school | async)?.location?.longitude" title="BCA"></agm-marker>
+</agm-map>

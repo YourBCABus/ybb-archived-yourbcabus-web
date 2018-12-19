@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter, isDevMode } from '@angular/core';
 import { BehaviorSubject, Observable, interval } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Bus } from './interfaces';
+import { School, Bus } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +24,22 @@ export class ApiService {
   public buses = new BehaviorSubject<Bus[]>([]);
   public onRefreshBuses = new EventEmitter<Bus[]>();
 
+  public school = new BehaviorSubject<School>(null);
+
   private refreshObservable: Observable<number> = interval(15000);
   public isAutoRefreshingOn = true;
 
-  public url = "https://db.yourbcabus.com/schools/5bca51e785aa2627e14db459";
+  public url = "https://db.yourbcabus.com";
+  public schoolId = "5bca51e785aa2627e14db459";
+
+  public refreshSchool() {
+    this.http.get<School>(`${this.url}/schools/${this.schoolId}`).subscribe((school) => {
+      this.school.next(school);
+    });
+  }
 
   public refreshBuses() {
-    this.http.get<Bus[]>(`${this.url}/buses`).subscribe((buses) => {
+    this.http.get<Bus[]>(`${this.url}/schools/${this.schoolId}/buses`).subscribe((buses) => {
       buses.forEach((bus) => {
         bus.invalidate_time = bus.invalidate_time && new Date(bus.invalidate_time);
       });
