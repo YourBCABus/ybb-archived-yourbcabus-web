@@ -2,9 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import keys from './apikeys/devapikeys';
+import { APIKeys } from './apikeys/apikeys.interface';
+
 export const environment = {
   production: false
 };
+
+export const apiKeys: APIKeys = keys;
 
 /*
  * For easier debugging in development mode, you can import the following file

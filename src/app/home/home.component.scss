@@ -34,3 +34,34 @@
     pointer-events: none;
   }
 }
+
+.display-mode-nav {
+  font-size: 18px;
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.5);
+
+    &.active {
+      color: white;
+      font-weight: bold;
+    }
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+.split-view-buses-list {
+  width: 50%;
+}
+
+@media (min-width: 992px) {
+  .split-view-buses-list {
+    width: 33%;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}

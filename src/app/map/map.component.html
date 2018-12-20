@@ -1,0 +1,25 @@
+<agm-map
+  class="w-100 h-100"
+  [latitude]="(api.school | async)?.location?.latitude + latitudeDelta"
+  [longitude]="(api.school | async)?.location?.longitude + longitudeDelta"
+  [zoom]="19"
+  [fullscreenControl]="true"
+  [rotateControl]="true"
+  [streetViewControl]="false"
+  mapTypeId="hybrid"
+>
+  <agm-marker *ngFor="let bus of (buses | async); trackBy: trackBus" [iconUrl]="{url: iconUrlForMarker(bus), scaledSize: {width: 20, height: 20}}" [latitude]="bus.coordinate.latitude" [longitude]="bus.coordinate.longitude" title="{{bus.name}} ({{bus.location}})" [zIndex]="bus.coordinate.z" [opacity]="opacityForBus(bus)">
+    <agm-snazzy-info-window [closeWhenOthersOpen]="true" [border]="false" [maxWidth]="null">
+      <ng-template>
+        <div class="d-flex align-items-center">
+          <div class="flex-grow-1">
+            <h5 class="m-0">{{bus.name}}</h5>
+          </div>
+          <div class="bus-location-container ml-4">
+            <ybb-bus-location [bus]="bus"></ybb-bus-location>
+          </div>
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
+</agm-map>

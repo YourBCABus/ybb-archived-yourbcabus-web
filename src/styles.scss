@@ -20,7 +20,14 @@ $theme-colors: (
 $body-bg: $light;
 $link-hover-color: $primary-dark;
 
+$si-content-padding: 16px;
+
 @import '~bootstrap/scss/bootstrap';
+@import '~snazzy-info-window/dist/snazzy-info-window.scss';
+
+html, body {
+  height: 100%;
+}
 
 // Safe Area Margin and Padding - taken from Bootstrap
 @each $prop, $abbrev in (margin: m, padding: p) {
@@ -45,7 +52,6 @@ $link-hover-color: $primary-dark;
   }
 }
 
-
 .bg-primary-gradient {
   @extend .bg-primary;
   @extend .text-white;
@@ -60,4 +66,17 @@ $link-hover-color: $primary-dark;
 
 .overflow-hidden {
   overflow: hidden !important;
+}
+
+.overflow-scroll {
+  overflow: scroll !important;
+}
+
+.si-frame {
+  padding-top: 28px;
+  @extend .shadow-lg;
+}
+
+.si-float-wrapper {
+  font-family: $font-family-base;
 }
