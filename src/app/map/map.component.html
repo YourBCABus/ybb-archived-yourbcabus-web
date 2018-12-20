@@ -8,7 +8,7 @@
   [streetViewControl]="false"
   mapTypeId="hybrid"
 >
-  <agm-marker *ngFor="let bus of (buses | async); trackBy: trackBus" [latitude]="bus.coordinate.latitude" [longitude]="bus.coordinate.longitude" title="{{bus.name}} ({{bus.location}})" [zIndex]="bus.coordinate.z" [opacity]="opacityForBus(bus)">
+  <agm-marker *ngFor="let bus of (buses | async); trackBy: trackBus" [iconUrl]="{url: iconUrlForMarker(bus), scaledSize: {width: 20, height: 20}}" [latitude]="bus.coordinate.latitude" [longitude]="bus.coordinate.longitude" title="{{bus.name}} ({{bus.location}})" [zIndex]="bus.coordinate.z" [opacity]="opacityForBus(bus)">
     <agm-snazzy-info-window [closeWhenOthersOpen]="true" [border]="false" [maxWidth]="null">
       <ng-template>
         <div class="d-flex align-items-center">

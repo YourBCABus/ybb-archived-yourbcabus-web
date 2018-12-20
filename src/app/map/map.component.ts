@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../api.service';
+import { StarredBusesService } from '../starred-buses.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Bus, Coordinate } from '../interfaces';
@@ -29,7 +30,8 @@ export interface ZCoordinate extends Coordinate {
 export class MapComponent implements OnInit {
 
   constructor(
-    public api: ApiService
+    public api: ApiService,
+    private starred: StarredBusesService
   ) { }
 
   @Input() searching: Record<string, boolean>;
@@ -110,6 +112,10 @@ export class MapComponent implements OnInit {
 
   opacityForBus(marker: BusMarker) {
     return (this.searching && !this.searching[marker.bus_id]) ? 0.2 : 1;
+  }
+
+  iconUrlForMarker(marker: BusMarker) {
+    return `https://yourbcabus.com/assets/markers/${this.starred.isStarred(marker.bus_id) ? "starred" : "standard"}.png`;
   }
 
   ngOnInit() {

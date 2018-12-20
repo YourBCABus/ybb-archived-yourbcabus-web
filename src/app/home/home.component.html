@@ -58,7 +58,7 @@
       </div>
     </div>
     <div class="flex-grow-1 p-0 overflow-hidden h-100">
-      <ybb-map class="d-block w-100 h-100" *ngIf="loadMap" [searching]="mapSearch"></ybb-map>
+      <ybb-map class="d-block w-100 h-100" *ngIf="loadMap" [searching]="mapSearch" [hidden]="!loadMap"></ybb-map>
     </div>
   </div>
 </div>

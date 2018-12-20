@@ -74,7 +74,7 @@ html, body {
 
 .si-frame {
   padding-top: 28px;
-  @extend .shadow;
+  @extend .shadow-lg;
 }
 
 .si-float-wrapper {

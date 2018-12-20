@@ -7,11 +7,12 @@ import { debounceTime } from 'rxjs/operators';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faList, faColumns, faMap } from '@fortawesome/free-solid-svg-icons';
+import { LocalStorage } from 'ngx-webstorage';
 
 export enum HomeDisplayMode {
-  List,
-  Split,
-  Map
+  List = 0,
+  Split = 1,
+  Map = 2
 }
 
 interface HomeDisplayModeItem {
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
   public starredBuses: Bus[] = [];
   public debounceTime = 100;
   public displayModes = HomeComponent.displayModes;
-  public activeDisplayMode = HomeDisplayMode.List;
+  @LocalStorage("YBBHomeDisplayMode") public activeDisplayMode;
   public loadMap = false;
   public mapSearch: Record<string, boolean> = null;
 
@@ -97,6 +98,12 @@ export class HomeComponent implements OnInit {
         });
       }
     });
+
+    if (this.activeDisplayMode === null || this.activeDisplayMode === undefined) {
+      this.activeDisplayMode = HomeDisplayMode.List;
+    }
+
+    this.setDisplayMode(this.activeDisplayMode);
   }
 
   trackBus(bus: Bus) {
