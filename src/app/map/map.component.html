@@ -16,7 +16,7 @@
             <h5 class="m-0">{{bus.name}}</h5>
           </div>
           <div class="bus-location-container ml-4">
-            <ybb-bus-location [bus]="bus"></ybb-bus-location>
+            <ybb-bus-location *ngIf="bus.bus" [bus]="bus.bus"></ybb-bus-location>
           </div>
         </div>
       </ng-template>

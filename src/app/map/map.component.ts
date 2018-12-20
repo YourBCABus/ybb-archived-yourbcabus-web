@@ -16,6 +16,7 @@ export interface BusMarker {
   name?: string;
   coordinate: Coordinate;
   location: string;
+  bus?: Bus;
 }
 
 export interface ZCoordinate extends Coordinate {
@@ -126,7 +127,8 @@ export class MapComponent implements OnInit {
         bus_id: bus._id,
         name: bus.name,
         coordinate: this.coordinateForBus(bus),
-        location: bus.locations[0]
+        location: bus.locations[0],
+        bus: bus
       };
     })));
   }
