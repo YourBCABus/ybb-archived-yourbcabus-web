@@ -5,5 +5,5 @@ export const environment = {
 };
 
 export const apiKeys: APIKeys = {
-  googleMaps: ""
+  googleMaps: "AIzaSyB1UAUXfDfg9rejta4w2mLEW71wVsO8hFY"
 };
