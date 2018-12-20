@@ -8,5 +8,18 @@
   [streetViewControl]="false"
   mapTypeId="hybrid"
 >
-  <agm-marker [latitude]="(api.school | async)?.location?.latitude" [longitude]="(api.school | async)?.location?.longitude" title="BCA"></agm-marker>
+  <agm-marker *ngFor="let bus of (buses | async); trackBy: trackBus" [latitude]="bus.coordinate.latitude" [longitude]="bus.coordinate.longitude" title="{{bus.name}} ({{bus.location}})" [zIndex]="bus.coordinate.z" [opacity]="opacityForBus(bus)">
+    <agm-snazzy-info-window [closeWhenOthersOpen]="true" [border]="false" [maxWidth]="null">
+      <ng-template>
+        <div class="d-flex align-items-center">
+          <div class="flex-grow-1">
+            <h5 class="m-0">{{bus.name}}</h5>
+          </div>
+          <div class="bus-location-container ml-4">
+            <ybb-bus-location [bus]="bus"></ybb-bus-location>
+          </div>
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
 </agm-map>

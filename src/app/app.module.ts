@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +32,7 @@ import { MapComponent } from './map/map.component';
     FontAwesomeModule,
     NgxWebstorageModule.forRoot({}),
     AgmCoreModule.forRoot({apiKey: apiKeys.googleMaps}),
+    AgmSnazzyInfoWindowModule,
     LayoutModule
   ],
   providers: [],

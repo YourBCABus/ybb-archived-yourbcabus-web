@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   public displayModes = HomeComponent.displayModes;
   public activeDisplayMode = HomeDisplayMode.List;
   public loadMap = false;
+  public mapSearch: Record<string, boolean> = null;
 
   busFilter(searchTerm: string) {
     let processed = searchTerm.trim().toLowerCase().replace(/ /g, "");
@@ -59,9 +60,14 @@ export class HomeComponent implements OnInit {
       let filter = this.busFilter(searchTerm);
       this.buses = this.api.buses.value.filter(filter);
       this.starredBuses = this.starManager.starredBuses.value.filter(filter);
+      this.mapSearch = {};
+      this.buses.forEach(bus => {
+        this.mapSearch[bus._id] = true;
+      });
     } else {
       this.buses = this.api.buses.value;
       this.starredBuses = this.starManager.starredBuses.value;
+      this.mapSearch = null;
     }
   }
 
