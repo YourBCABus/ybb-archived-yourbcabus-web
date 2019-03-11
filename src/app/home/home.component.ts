@@ -6,7 +6,7 @@ import { Bus } from '../interfaces';
 import { debounceTime } from 'rxjs/operators';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faList, faColumns, faMap } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faList, faColumns, faMap, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorage } from 'ngx-webstorage';
 
 export enum HomeDisplayMode {
@@ -38,7 +38,9 @@ export class HomeComponent implements OnInit {
   ];
 
   public isIOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+  public isAndroid = !!navigator.userAgent && /(android)/i.test(navigator.userAgent);
   public searchIcon = faSearch;
+  public chevronIcon = faChevronRight;
   public searchField = new FormControl("");
   public buses: Bus[] = [];
   public starredBuses: Bus[] = [];

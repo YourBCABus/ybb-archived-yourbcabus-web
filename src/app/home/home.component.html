@@ -15,7 +15,17 @@
       <div class="flex-grow-1">
         <h3>Get our iOS app.</h3>
         <p>Notifications when your bus arrives. Navigation with custom stops. Get Off alerts so you never miss your stop. And more.</p>
-        <a href="https://itunes.apple.com/us/app/yourbcabus/id1443414640"><img src="/assets/download-on-the-app-store.svg" /></a>
+        <p><a href="https://itunes.apple.com/us/app/yourbcabus/id1443414640"><img src="/assets/download-on-the-app-store.svg" /></a></p>
+        <p>Or <a class="text-accent" href="https://testflight.apple.com/join/jetSfWRx">get the beta <fa-icon [icon]="chevronIcon"></fa-icon></a></p>
+      </div>
+    </div>
+    <div class="container overflow-hidden app-banner d-flex align-items-center pb-3" *ngIf="isAndroid">
+      <img src="/assets/android.jpg" class="d-block app-image mr-3" />
+      <div class="flex-grow-1">
+        <h3>Get our Android beta.</h3>
+        <p>Notifications when your bus arrives. Navigation with custom stops. Get Off alerts so you never miss your stop. And more.</p>
+        <a href='https://play.google.com/store/apps/details?id=com.yourbcabus.android.yourbcabus&utm_source=yourbcabus_web&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' class="android-badge" /></a>
+        <p class="text-white-50 text-small">Google Play and the Google Play logo are trademarks of Google LLC.</p>
       </div>
     </div>
     <div class="container pt-2 pb-3">
