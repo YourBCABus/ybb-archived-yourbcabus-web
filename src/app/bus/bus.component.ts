@@ -3,6 +3,7 @@ import { Bus } from '../interfaces';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { StarredBusesService } from '../starred-buses.service';
 import { isBusValidated } from '../utils';
+import { DateTime, Zone } from 'luxon';
 
 @Component({
   selector: 'ybb-bus',
@@ -15,6 +16,7 @@ export class BusComponent implements OnInit {
     public starManager: StarredBusesService
   ) { }
 
+  @Input() public timezone?: string | Zone;
   @Input() public bus: Bus;
 
   public starIcon = faStar;
@@ -29,7 +31,18 @@ export class BusComponent implements OnInit {
 
   get status() {
     if (this.bus.available) {
-      return this.location ? "Arrived at BCA" : "Not at BCA";
+      if (this.bus.departure === undefined) {
+        return this.location ? "Arrived at BCA" : "Not at BCA";
+      } else {
+        const departureMs = DateTime.local().setZone(this.timezone || "America/New_York").startOf("day").set({
+          hour: Math.floor(this.bus.departure / 60),
+          minute: this.bus.departure % 60
+        }).toMillis();
+        const departure = DateTime.fromMillis(departureMs).toLocaleString({
+          hour: "numeric", minute: "numeric"
+        });
+        return `Departs at ${departure}`;
+      }
     } else {
       return "Not running";
     }

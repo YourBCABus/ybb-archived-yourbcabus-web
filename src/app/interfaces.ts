@@ -8,6 +8,7 @@ export interface School {
   name?: string;
   location?: Coordinate;
   available: boolean;
+  timezone?: string;
 }
 
 export interface Bus {
@@ -16,7 +17,7 @@ export interface Bus {
   name?: string;
   locations?: string[];
   boarding_time?: Date;
-  departure_time?: Date;
+  departure?: number;
   invalidate_time?: Date;
   available: boolean;
   other_names?: string[];

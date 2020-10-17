@@ -46,14 +46,14 @@
     <div class="bg-primary-gradient px-sa" *ngIf="starredBuses.length > 0">
       <div class="container py-3">
         <div class="row bus-grid">
-          <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [bus]="bus" class="d-block my-1 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
+          <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [timezone]="(api.school | async)?.timezone" [bus]="bus" class="d-block my-1 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
         </div>
       </div>
     </div>
     <div class="m-sa">
       <div class="container py-3">
         <div class="row bus-grid">
-          <ybb-bus *ngFor="let bus of buses; trackBy: trackBus" [bus]="bus" class="d-block my-1 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
+          <ybb-bus *ngFor="let bus of buses; trackBy: trackBus" [timezone]="(api.school | async)?.timezone" [bus]="bus" class="d-block my-1 col-md-6 col-lg-4 px-sm-1"></ybb-bus>
         </div>
       </div>
     </div>
@@ -61,10 +61,10 @@
   <div class="container-fluid flex-grow-1 d-flex flex-row h-100 overflow-hidden p-0" [hidden]="effectiveDisplayMode === 0">
     <div class="split-view-buses-list p-0 overflow-scroll" *ngIf="effectiveDisplayMode === 1">
       <div class="pl-sa py-3 bg-primary-gradient" *ngIf="starredBuses.length > 0">
-        <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [bus]="bus" class="d-block w-100 my-1 px-3"></ybb-bus>
+        <ybb-bus *ngFor="let bus of starredBuses; trackBy: trackBus" [timezone]="(api.school | async)?.timezone" [bus]="bus" class="d-block w-100 my-1 px-3"></ybb-bus>
       </div>
       <div class="pl-sa py-3 border-right">
-        <ybb-bus *ngFor="let bus of buses; trackBy: trackBus" [bus]="bus" class="d-block w-100 my-1 px-3"></ybb-bus>
+        <ybb-bus *ngFor="let bus of buses; trackBy: trackBus" [timezone]="(api.school | async)?.timezone" [bus]="bus" class="d-block w-100 my-1 px-3"></ybb-bus>
       </div>
     </div>
     <div class="flex-grow-1 p-0 overflow-hidden h-100">
