@@ -38,10 +38,12 @@ export class BusComponent implements OnInit {
           hour: Math.floor(this.bus.departure / 60),
           minute: this.bus.departure % 60
         }).toMillis();
-        const departure = DateTime.fromMillis(departureMs).toLocaleString({
+        const departure = DateTime.fromMillis(departureMs);
+        const departureStr = departure.toLocaleString({
           hour: "numeric", minute: "numeric"
         });
-        return `Departs at ${departure}`;
+        const prefix = DateTime.local() <= departure ? "Departs at" : "Departed at";
+        return `${prefix} ${departureStr}`;
       }
     } else {
       return "Not running";
