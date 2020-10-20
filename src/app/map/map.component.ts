@@ -72,13 +72,13 @@ export class MapComponent implements OnInit {
   public bCharset = ["F", "G", "H", "I", "J", "K"];
 
   public auCoord = {latitude: 40.9017077, longitude: -74.0346963, z: 5000};
-  public auString = "AU";
+  public auString = ["AU", "AUD", "Au", "Aud"];
 
   coordinateForBus(bus: Bus): ZCoordinate {
     if (bus.locations && bus.locations.length > 0) {
       const location = bus.locations[0].toUpperCase().trim();
 
-      if (location === this.auString) {
+      if (this.auString.includes(location)) {
         return this.auCoord;
       }
 
